@@ -1,0 +1,356 @@
+{
+	"info": {
+		"_postman_id": "f125da28-c3d8-4460-8d10-f5d219b41e33",
+		"name": "test-app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user yaratish",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"if(pm.response.json().success) {",
+							"    pm.environment.set(\"authToken2\", pm.response.json().data.token)",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Mehriddin\",\n    \"password\": \"esorom11\",\n    \"username\": \"mehriddinnozimov5356@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{uri}}/users/sign",
+					"host": [
+						"{{uri}}"
+					],
+					"path": [
+						"users",
+						"sign"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"if(pm.response.json().success) {",
+							"    pm.environment.set(\"authToken2\", pm.response.json().data.token)",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"password\": \"esorom11\",\n    \"username\": \"mehriddinnozimov5356@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{uri}}/users/login",
+					"host": [
+						"{{uri}}"
+					],
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{uri}}/users/me/logout",
+					"host": [
+						"{{uri}}"
+					],
+					"path": [
+						"users",
+						"me",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getme",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{uri}}/users/me",
+					"host": [
+						"{{uri}}"
+					],
+					"path": [
+						"users",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user get all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{uri}}/users/all",
+					"host": [
+						"{{uri}}"
+					],
+					"path": [
+						"users",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user get id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{uri}}/users/60dc2c3aa4e5283dba190385",
+					"host": [
+						"{{uri}}"
+					],
+					"path": [
+						"users",
+						"60dc2c3aa4e5283dba190385"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "put user",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Mujil\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{uri}}/users/60dc027ac072612872a2a304",
+					"host": [
+						"{{uri}}"
+					],
+					"path": [
+						"users",
+						"60dc027ac072612872a2a304"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete user",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{uri}}/users/60dc027ac072612872a2a30",
+					"host": [
+						"{{uri}}"
+					],
+					"path": [
+						"users",
+						"60dc027ac072612872a2a30"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test get all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{uri}}/tests/all",
+					"host": [
+						"{{uri}}"
+					],
+					"path": [
+						"tests",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post test",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"A.Qodiriyning ijodi\",\n    \"author\": \"60dc09dea904ba2cd7d0fdbe\",\n    \"subject\": \"ona tili\",\n    \"difficulty\": 2,\n    \"data\": [\n        {\n            \"question\": \"Til oldi, jarangsiz undoshlar soni nechta?\",\n            \"variants\": [\n                {\n                    \"value\": \"4 ta\",\n                    \"isAnswer\": false\n                },\n                 {\n                    \"value\": \"4 ta\",\n                    \"isAnswer\": false\n                },\n                 {\n                    \"value\": \"4 ta\",\n                    \"isAnswer\": false\n                },\n                 {\n                    \"value\": \"2 ta\",\n                    \"isAnswer\": true\n                }\n            ]\n        },\n         {\n            \"question\": \"Til oldi, jarangsiz undoshlar soni nechta?\",\n            \"variants\": [\n                {\n                    \"value\": \"4 ta\",\n                    \"isAnswer\": false\n                },\n                 {\n                    \"value\": \"4 ta\",\n                    \"isAnswer\": false\n                },\n                 {\n                    \"value\": \"4 ta\",\n                    \"isAnswer\": false\n                },\n                 {\n                    \"value\": \"2 ta\",\n                    \"isAnswer\": true\n                }\n            ]\n        },\n         {\n            \"question\": \"Til oldi, jarangsiz undoshlar soni nechta?\",\n            \"variants\": [\n                {\n                    \"value\": \"4 ta\",\n                    \"isAnswer\": false\n                },\n                 {\n                    \"value\": \"4 ta\",\n                    \"isAnswer\": false\n                },\n                 {\n                    \"value\": \"4 ta\",\n                    \"isAnswer\": false\n                },\n                 {\n                    \"value\": \"2 ta\",\n                    \"isAnswer\": true\n                }\n            ]\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{uri}}/tests/add",
+					"host": [
+						"{{uri}}"
+					],
+					"path": [
+						"tests",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get test by user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{uri}}/users/60dc3480b530df419dcb668d/tests",
+					"host": [
+						"{{uri}}"
+					],
+					"path": [
+						"users",
+						"60dc3480b530df419dcb668d",
+						"tests"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "gett test id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{uri}}/tests/60dc37a64a8fc2443d9a9250",
+					"host": [
+						"{{uri}}"
+					],
+					"path": [
+						"tests",
+						"60dc37a64a8fc2443d9a9250"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "testni o`chirish",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{uri}}/tests/60dc380c993ccb44766d47a3",
+					"host": [
+						"{{uri}}"
+					],
+					"path": [
+						"tests",
+						"60dc380c993ccb44766d47a3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{authToken2}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "uri",
+			"value": "http://localhost:3000"
+		},
+		{
+			"key": "authToken2",
+			"value": ""
+		}
+	]
+}
