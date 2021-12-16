@@ -29,6 +29,17 @@ const userSchema = new mongoose.Schema({
         minlength: 3,
         maxlength: 20
     },
+    results: [{
+        test: {
+            type: mongoose.Schema.ObjectId,
+            ref: "Test",
+            required: true
+        },
+        result: {
+            type: Number,
+            required: true
+        }
+    }],
     tokens: [{
         token : {
             type: String,
