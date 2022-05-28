@@ -1,13 +1,12 @@
-require('dotenv').config({ path: './src/config/.env' })
-require("./src/db/mongoose")
-
 const express = require("express")
 const app = express()
 
 const path = require("path")
 const bodyParser = require("body-parser")
 const expressLayouts = require("express-ejs-layouts")
+const helmet = require("helmet")
 
+app.use(helmet())
 app.use(expressLayouts)
 app.use(express.static(path.join(__dirname, '/src/statics')))
 app.use(bodyParser.json())
@@ -18,9 +17,7 @@ app.set("view engine", "ejs")
 
 app.use("/users", require("./src/routes/user"))
 app.use("/tests", require("./src/routes/test"))
+app.use("/reports", require("./src/routes/report"))
 app.use("/admin", require("./src/routes/admin"))
 
-const port = process.env.PORT
-app.listen(port, () => {
-    console.log(`http://localhost:${port}`)
-})
+module.exports = app

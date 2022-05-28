@@ -1,22 +1,5 @@
 const mongoose =  require("mongoose")
 
-const questionSchema = new mongoose.Schema({
-    question: {
-        type: String,
-        required: true
-    },
-    variants: [{
-        value: {
-            type: String,
-            required: true
-        },
-        isAnswer: {
-            type: Boolean,
-            required: true
-        }
-    }]
-})
-
 const testSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -36,7 +19,10 @@ const testSchema = new mongoose.Schema({
         ref: "User",
         required: true
     },
-    data: [questionSchema]
+    data: [{
+        type: mongoose.Schema.ObjectId,
+        ref: "Question"
+    }]
 }, {
     timestamps: true
 })
