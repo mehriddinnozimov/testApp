@@ -1,5 +1,6 @@
 const Test = require("../model/test")
 const Question = require("../model/question")
+const User = require("../model/user")
 
 exports.getAll =  async (req, res) => {
     let query = {}
@@ -109,11 +110,25 @@ exports.updateQuestion = async (req, res) => {
     }
 }
 
+
 exports.remove = async (req, res) => {
     try {
         let test = await Test.findOne({_id:req.params.testId, author:req.user._id})
         if(!test) throw "Test not found"
         await test.remove()
+        ////  test o`chirilgandan so`ng defaultTest nomli testga savollar o`tqaziladi
+        // const defaultUser  = await User.findOne({ email: "defaultUser@def.com" })
+        // const defaultTest = await Test.findOne({ subject: "default", author: defaultUser._id })
+        // const questions = await Question.find({testId: test._id})
+        // questions.forEach(async (question) => {
+        //     question.testId = defaultTest._id
+        //     defaultTest.data.push(question._id)
+        //     await question.save()
+        // })
+        // await defaultTest.save()
+
+        //// test o`chiriladi, savollar ham
+        await Question.deleteMany({ testId: test._id })
         res.json({ success: true, test })
     } catch (err) {
         res.json({ success:false, err })
@@ -125,8 +140,10 @@ exports.removeQuestion = async (req, res) => {
         const test = await Test.findOne({_id:req.params.testId, author:req.user._id})
         if(!test) throw "Test not found"
         const question = await Question.findOne({ _id: req.params.questionId, testId: test._id })
-        if(question) throw "Question not found"
+        if(!question) throw "Question not found"
         await question.remove()
+        test.data = test.data.filter(a => a != question._id)
+        await test.save()
         res.json({ success: true, question })
     } catch (err) {
         res.json({ success:false, err })
