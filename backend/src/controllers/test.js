@@ -22,6 +22,7 @@ exports.getMe = async (req, res) => {
 exports.getById = async (req, res) => {
     try {
         const test = await Test.findById(req.params.testId)
+        if(!test) throw "Test not found"
         return res.json({ success: true, test })
     } catch (err) {
         return res.json({ success: false, err })
