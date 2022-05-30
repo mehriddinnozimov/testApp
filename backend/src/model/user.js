@@ -30,15 +30,8 @@ const userSchema = new mongoose.Schema({
         maxlength: 20
     },
     results: [{
-        test: {
-            type: mongoose.Schema.ObjectId,
-            ref: "Test",
-            required: true
-        },
-        result: {
-            type: Number,
-            required: true
-        }
+        type: mongoose.Schema.ObjectId,
+        ref: "Result"
     }],
     tokens: [{
         token : {

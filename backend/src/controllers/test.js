@@ -5,13 +5,13 @@ const User = require("../model/user")
 exports.getAll =  async (req, res) => {
     let query = {}
     if(req.query) query = req.query;
-    const tests = await Test.find(query).sort({createdAt:-1})
+    const tests = await Test.find(query).sort({createdAt:-1}).populate("data")
     return res.json({ success: true, tests })
 }
 
 exports.getMe = async (req, res) => {
     try {
-        const tests = await Test.find({author:req.user._id}).sort({createdAt:-1})
+        const tests = await Test.find({author:req.user._id}).sort({createdAt:-1}).populate("data")
         return res.json({success:true, tests})
     } catch (err) {
         return res.json({success: false, err})
@@ -21,7 +21,7 @@ exports.getMe = async (req, res) => {
 
 exports.getById = async (req, res) => {
     try {
-        const test = await Test.findById(req.params.testId)
+        const test = await Test.findById(req.params.testId).populate("data")
         if(!test) throw "Test not found"
         return res.json({ success: true, test })
     } catch (err) {

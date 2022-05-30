@@ -18,6 +18,8 @@ app.set("view engine", "ejs")
 app.use("/users", require("./src/routes/user"))
 app.use("/tests", require("./src/routes/test"))
 app.use("/reports", require("./src/routes/report"))
+app.use("/results", require("./src/routes/result"))
 app.use("/admin", require("./src/routes/admin"))
+
 
 module.exports = app

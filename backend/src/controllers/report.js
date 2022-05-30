@@ -4,14 +4,14 @@ const User = require("../model/user")
 
 exports.getForMe = async (req, res) => {
 	let query = { testAuthor: req.user._id }
-	if(req.query) query = Object.assign(query, req.query)
+	if(req.query) query = Object.assign(req.query, query)
 	const reports = await Report.find(query).sort({createdAt:-1})
 	return res.json({ success: true, reports })
 }
 
 exports.getFromMe = async (req, res) => {
 	let query = { author: req.user._id }
-	if(req.query) query = Object.assign(query, req.query)
+	if(req.query) query = Object.assign(req.query, query)
 	const reports = await Report.find(query).sort({createdAt:-1})
 	return res.json({ success: true, reports })
 }

@@ -22,6 +22,10 @@ const testSchema = new mongoose.Schema({
     data: [{
         type: mongoose.Schema.ObjectId,
         ref: "Question"
+    }],
+    results: [{
+        type: mongoose.Schema.ObjectId,
+        ref: "Result"
     }]
 }, {
     timestamps: true
