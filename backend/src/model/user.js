@@ -66,6 +66,19 @@ userSchema.statics.findByCredentials = async (email, password) => {
     return user;
 }
 
+userSchema.statics.findOrCreate = async (profile) => {
+    let user = await User.findOne({ email: profile.email })
+    if(!user) {
+        user = new User({
+            name: profile.name,
+            email: profile.email,
+            password: "authWithPassport"
+        })
+        await user.save()
+    }
+    return user
+}
+
 userSchema.pre("save", async function(next) {
     if(this.isModified("password")) this.password = await bcrypt.hash(this.password, 8);
     next()

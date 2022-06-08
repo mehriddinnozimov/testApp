@@ -1,7 +1,7 @@
 const Test = require("../model/test")
 const User = require("../model/user")
 
-module.exports = async (firstTime = false) => {
+module.exports = async () => {
 	const envAdmin = {
 		AdminName: process.env.ADMIN_NAME,
 		AdminEmail: process.env.ADMIN_EMAIL,

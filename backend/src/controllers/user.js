@@ -83,6 +83,17 @@ exports.login = async (req, res) => {
     }
 }
 
+exports.loginWithPassport = async (req, res) => {
+    try {
+        if(!req.user) throw "User not found"
+        const user = await User.findOne({_id: req.user._id})
+        const token = await user.generateToken()
+        return res.json({ success: true, token, user })
+    } catch (err) {
+        return res.json({ success:false, err })
+    }
+}
+
 exports.register =  async (req, res) => {
     try {
         if(!req.body || !req.body.email || !req.body.name || !req.body.password) throw "Wrong body!";
